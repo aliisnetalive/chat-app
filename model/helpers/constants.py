@@ -1,0 +1,46 @@
+DB_LOCALHOST = 'localhost'
+DB_USER = 'root'
+DB_PASSWORD = 'root'
+DB_NAME = 'chat_db'
+
+HOST = '127.0.0.1'
+PORT = 5555
+
+Users_METADATA = [
+    'UserID VARCHAR(255) PRIMARY KEY',
+    'FriendID VARCHAR(255)',
+    'UserName VARCHAR(255) NOT NULL',
+    'Password VARCHAR(80) NOT NULL',
+    'IsOnline BOOLEAN NOT NULL',
+    'IsAccept BOOLEAN NOT NULL',
+    'FOREIGN KEY (FriendID) REFERENCES Users(UserID)'
+]
+
+Message_METADATA = [
+    'MessageID VARCHAR(255) PRIMARY KEY',
+    'UserID VARCHAR(255) NOT NULL',
+    'Content TEXT',
+    'DateTime TIMESTAMP NOT NULL',
+    'RoomID INT NOT NULL',
+    'FOREIGN KEY (UserID) REFERENCES Users(UserID)'
+]
+
+Friends_METADATA = [
+    'RoomID INT PRIMARY KEY',
+    'UserID VARCHAR(255) NULL',
+    'UserName VARCHAR(255) NULL',
+    'FriendName VARCHAR(255) NULL',
+    'FriendID VARCHAR(255) NULL',
+    'FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE SET NULL',
+    'FOREIGN KEY (FriendID) REFERENCES Users(UserID) ON DELETE SET NULL'
+]
+
+Requests_METADATA = [
+    'RequestID INT PRIMARY KEY',
+    'UserID VARCHAR(255) NULL',  # Allow NULL to use ON DELETE SET NULL
+    'FriendID VARCHAR(255) NULL',  # Allow NULL to use ON DELETE SET NULL
+    'IsAccept BOOLEAN NOT NULL',
+    'RequestDateTime TIMESTAMP NOT NULL',
+    'FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE SET NULL',
+    'FOREIGN KEY (FriendID) REFERENCES Users(UserID) ON DELETE SET NULL'
+]

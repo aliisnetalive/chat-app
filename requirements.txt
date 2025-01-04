@@ -1,0 +1,9 @@
+pyqt5~=5.15.10
+pyqt5-stubs
+pyqtdarktheme
+auto-py-to-exe
+pytest
+mysql
+mysql-connector-python
+icecream
+colorama~=0.4.6
